@@ -1,0 +1,199 @@
+    .test {
+        background-color: #FFF;
+        padding-top: 10px;
+        // color: #fff
+    }
+
+
+    .header {
+        background-color: #296fa8;
+        // width: 100vw;
+        height: 6vh;
+        display: flex;
+        // flex-direction: column;
+        align-items: center;
+    }
+
+    .option {
+        color: #FFF;
+        flex-direction: row;
+        width: 100%;
+        padding: 1vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            background-color: #fff;
+            color: #296fa8;
+        }
+    }
+
+    .display {
+        display: flex;
+    }
+
+    .flex1 {
+        flex: 1 0 auto;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .flex3{
+        flex: 3 0 auto;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .column {
+        flex-direction: column;
+    }
+
+
+    .content {
+        // background-color: #3e8528;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .probesupper {
+        height: 10vh;
+        background-color: #6a91b1;
+        // margin: 1vh 1vw;
+        display: flex;
+        // flex-direction: column;
+    }
+
+    .probesstatus{
+        border-bottom: 1px solid;
+    }
+
+    .dashboardcube {
+        flex: 1 0 auto;
+        justify-content: center;
+        align-items: center;
+        // background-color: #b0f9dc;
+        // border:  1px solid;
+        flex-direction: column;
+        display: flex;
+        // margin: 0 10px;
+        // border-radius: 10p;
+
+    }
+
+    .cubeup {
+        font-family: '微軟正黑體';
+        font-size: x-large;
+        font-weight: 700;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cubebuttom {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dashboardmid {
+        padding: 1vh 10vw;
+
+    }
+
+    .event {
+        // background-color: #6a91b1;
+        flex: 1 0 auto;
+        height: 60vh;
+        // justify-content: center;
+        border: 1px solid;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .eventtitle {
+        font-family: '微軟正黑體';
+        font-size: x-large;
+        font-weight: bolder;
+        width: 100%;
+        margin:10px 0;
+        // color: #5b4649;
+        justify-content: center;
+        // background-color: #d96c4d;
+        border-bottom: 1px solid;
+    }
+
+    .eventcontent {
+        // display: flex;
+        // margin: 2vh 2vw;
+        // background-color: red;
+        width: -webkit-fill-available;
+        overflow-y: auto;
+    }
+
+    .eventlist {
+        margin: 0 2%;
+    }
+
+    .cell {
+        font-family: '微軟正黑體';
+        // font-size: x-large;
+        font-weight: 700;
+        display: flex;
+        border: 1px solid;
+        margin: 1%;
+        padding: 2% 0;
+        border-radius: 10px
+    }
+
+    .celltype {
+        flex: 3 1 auto;
+        max-width: 200px;
+        // background-color: red;
+    }
+
+    .cellcustomer{
+        max-width: 100px;
+    }
+
+
+
+    .probesupperright {
+        flex: 1 0 auto;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .probesupperleft {
+        flex: 1 0 auto;
+        align-items: center;
+        justify-content: center;
+        font-size: larger;
+
+        a {
+            color: #FFF;
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    .probesupperleft>input {
+        margin: 0;
+        border-radius: 0;
+        width: 100%;
+        height: 100%;
+        font-size: medium;
+    }
+
+    .probesuppermid {
+        flex: 5 0 auto;
+    }
+
+    .btn {
+        background-color: #296fa8;
+        flex: 1 0 auto;
+        align-items: center;
+        justify-content: center;
+        font-size: larger;
+        width: 100%;
+        height: 100%;
+    }
