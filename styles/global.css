@@ -13,9 +13,13 @@ body {
 }
 
 a {
-  /* color: #fff; */
+  /* color: #111; */
   text-decoration: none;
-  width: 100%;
+  /* width: 100%; */
+}
+
+a:visited{
+  color:#fff
 }
 
 img {

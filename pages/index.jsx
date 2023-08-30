@@ -7,6 +7,7 @@ import { getLayout } from "./header/Header";
 // import { useDispatch } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { addprobebegin} from '../actions';
+import Head from 'next/head';
 
 
 const counter = [
@@ -63,6 +64,7 @@ const HomePage = () => {
 
   return (
     <div className={`${styles.test}`}>
+      <Head><title>儀表版</title></Head>
       {/* <Link href="/probes/probelist"><button onClick={handleClick}>Like ({likes})</button></Link> */}
       <div className={`${styles.display} ${styles.probesstatus}`}>
         <Card data={counter} />
