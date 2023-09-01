@@ -39,15 +39,16 @@
         justify-content: center;
     }
 
-    .flex3{
+    .flex3 {
         flex: 3 0 auto;
         align-items: center;
         justify-content: center;
     }
 
-    .btn{
-        align-items:center;
+    .btn {
+        align-items: center;
     }
+
     .column {
         flex-direction: column;
     }
@@ -70,7 +71,7 @@
         overflow: scroll;
         overflow-y: auto;
 
-        .card{
+        .card {
             min-width: 17%;
             max-width: 17%;
             border: 1px solid;
@@ -85,45 +86,47 @@
         }
     }
 
-    .cardupper{
+    .cardupper {
         // align-items: center;
         flex: 1 0 auto;
         justify-content: center;
-        border-bottom: 1px solid; 
+        border-bottom: 1px solid;
     }
-    .cardcontent{
+
+    .cardcontent {
         flex: 3 0 auto;
-        margin: 0 10px ;
+        margin: 0 10px;
         max-height: 16vh;
         overflow: scroll;
         overflow-y: auto;
         // border: 1px solid;
     }
 
-    .cardbuttom{
+    .cardbuttom {
         // flex-direction: 
         // height: 10vh;;
         flex: 1 0 auto;
         // align-items: center;
-        border-top: 1px solid; 
+        border-top: 1px solid;
         justify-content: center;
-        a{
+
+        a {
             display: flex;
-            flex:1 0 auto;
+            flex: 1 0 auto;
             color: #111;
         }
     }
 
-    .btnleft{
-        &:hover{
+    .btnleft {
+        &:hover {
             background-color: #a8a8a8;
             border-radius: 0 0 0 11px;
             color: #FFF;
         }
     }
 
-    .btnright{
-        &:hover{
+    .btnright {
+        &:hover {
             background-color: #bd4c56;
             border-radius: 0 0 11px 0;
             color: #FFF;
@@ -140,8 +143,8 @@
         align-items: center;
         justify-content: center;
     }
-    
-    .probesteleport{
+
+    .probesteleport {
         // background-color: red;
         width: 30%;
         // flex: 1 auto;
@@ -149,16 +152,16 @@
         flex-wrap: wrap
     }
 
-    .probescube{
+    .probescube {
         padding: 5vh 5vw;
-        background-color:#296fa8;
+        background-color: #296fa8;
         color: #FFF;
         border: 1px solid black;
         font-size: xx-large;
         // flex-wrap: wrap
     }
 
-    .probesstatus{
+    .probesstatus {
         border-bottom: 1px solid;
     }
 
@@ -201,7 +204,7 @@
         font-size: x-large;
         font-weight: bolder;
         width: 100%;
-        margin:10px 0;
+        margin: 10px 0;
         justify-content: center;
         border-bottom: 1px solid;
     }
@@ -235,7 +238,7 @@
         // background-color: red;
     }
 
-    .cellcustomer{
+    .cellcustomer {
         max-width: 100px;
     }
 
@@ -254,7 +257,7 @@
         font-size: larger;
     }
 
-    .probeid{
+    .probeid {
         font-size: large;
         font-weight: 700;
         align-items: center;
@@ -263,10 +266,10 @@
         flex: 3 0 auto;
     }
 
-    .probestatus{
+    .probestatus {
         // margin: 0 15px;
         justify-content: center;
-        flex:2 0 auto;
+        flex: 2 0 auto;
         align-items: center;
         // flex-direction: row-reverse;
     }
@@ -285,4 +288,76 @@
         height: 100%;
         border: 2px solid;
         border-color: #296fa8;
+    }
+
+
+    //edit page 
+
+    .editprobe {
+        width: 100vw;
+        height: 90vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .probeInfo {
+        border: 2px solid #999;
+        flex-direction: column;
+        border-radius: 10px ;
+        justify-content: center;
+        align-items: center;
+        // flex: 6 0 auto;
+    }
+    .probetitle{
+        justify-content: center;
+    }
+
+    .probecontent{
+        width: 95%;
+    }
+
+    .probeInfoCell {
+        width: 30vw;
+        height: 40px;
+        // justify-content: center;
+        // flex: 1 0 auto;
+        // flex-direction: column;
+        margin: 10px;
+    }
+
+    .imputcell {
+        width:30vw ;
+        input{
+            margin: 0;
+        }
+        select {
+            margin: 0;
+        }
+    }
+    .textareacell{
+        width: 30vw;
+        // height: 30vh;
+        textarea{
+            margin: 0;
+        }
+    }
+    .itemcell{
+        width: 10vw;
+    }
+
+    .note{
+        height: 10vh;
+    }
+
+    .confirm{
+        // justify-content: center;
+        margin-top: 5px;
+        height: 40px;
+        width: 100%;
+        // margin: 0;
+    }
+
+    .nomargin{
+        margin: 0;
     }

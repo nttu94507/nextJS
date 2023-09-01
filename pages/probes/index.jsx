@@ -1,9 +1,8 @@
 import styles from '../../styles/index.module.scss'
 import { getLayout } from '../header/Header'
-import Header from '../sidebar/sidebar'
 import Head from 'next/head'
 import Link from 'next/link'
-// import Home from '../index'
+
 
 const Probes = () => {
     return (
@@ -25,7 +24,7 @@ const Probes = () => {
                     <div className={`${styles.probesteleport} ${styles.display}`}>
                         
                         {/* <div className={`${styles.display}`}> */}
-                        <Link href="/probes/probelist"><div className={styles.probescube}>新增</div></Link>
+                        <Link href="/probes/edit"><div className={styles.probescube}>新增</div></Link>
                             {/* <div className={styles.probescube}>修改</div> */}
                         {/* </div>
                         <div> */}

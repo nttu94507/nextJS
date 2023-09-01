@@ -67,7 +67,7 @@ const Cardmap = (data) => {
 }
 
 const ProbeList = () => {
-    const [probedata,setprobedata] = useState();
+    const [probedata,setprobedata] = useState([]);
 
   useEffect(()=>{
     // fetch('http://'+local+'/api/Probe')
@@ -75,8 +75,9 @@ const ProbeList = () => {
     .then((response) => response.json())
     .then((res)=>{
         setprobedata(res);
+        console.log('123');
     })
-  })
+  },[])
     return (
 
         <div className={`${styles.display}`}>
