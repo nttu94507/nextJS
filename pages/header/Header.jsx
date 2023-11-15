@@ -3,6 +3,8 @@ import styles from '../../styles/index.module.scss'
 import Link from 'next/link'
 import SideBar from '../sidebar/sidebar';
 
+const url = process.env.NEXT_PUBLIC_API_HOST
+
 const Header = ({ children }) => {
     return (
         <>

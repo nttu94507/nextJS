@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { use, useEffect, useState } from 'react'
+// import url from '../../../url/url'
 
 const Edit = () => {
     const router = useRouter();
@@ -16,10 +17,13 @@ const Edit = () => {
 
     const { Id } = router.query
 
+    const url = process.env.NEXT_PUBLIC_API_HOST
+
     useEffect(() => {
         if (!router.isReady) return;
-        // const { Id } = router.query
-        fetch(`http://192.168.25.68:8000/api/Probe/detail/${Id}`)
+        console.log(process.env.NEXT_PUBLIC_API_HOST)
+        
+        fetch(`http://${url}/api/Probe/detail/${Id}`)
             .then((response) => response.json())
             .then((res) => {
                 console.log(res)
@@ -41,17 +45,15 @@ const Edit = () => {
             harddiskdrive: hddcode,
             price: price,
             note: note,
-
-
         }
         // console.log(probeInfo)
-        fetch(`http://192.168.25.68:8000/api/Probe/update`, {
+        fetch(`http://${url}/api/Probe/update`, {
             method: 'POST',
             body: JSON.stringify(probeInfo),
             headers: {
                 'content-type': 'application/json'
             },
-        })
+        }).then((response) => response.json())
     }
     return (
         <div className={`${styles.display}`}>
@@ -76,7 +78,7 @@ const Edit = () => {
                             <div className={` ${styles.imputcell}`}>
                                 <select name='harddiskdrive' required value={hddcode} onChange={(e) => {
                                     setHddcode(e.target.value)
-                                    console.log(hddcode)
+                                    // console.log(hddcode)
                                 }}>
                                     <option value={""} >請選擇容量大小</option>
                                     <option value={0} >8GB</option>
@@ -103,13 +105,16 @@ const Edit = () => {
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>單價:  </div>
                             <div className={` ${styles.imputcell}`}>
-                                <input type='text' name='probeId' placeholder={price ? price : '請輸入 單價'} defaultValue={price ? price : ''} />
+                                <input type='text' name='probeId' placeholder={price ? price : '請輸入 單價'} defaultValue={price ? price : ''} onChange={(e)=>{
+                                    setNote(e.target.value)}}/>
                             </div>
                         </div>
                         <div className={`${styles.probeInfoCell} ${styles.note} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>備註: </div>
                             <div className={` ${styles.textareacell}`}>
-                                <textarea name='note' defaultValue={note ? note : ''} ></textarea>
+                                <textarea name='note' defaultValue={note ? note : ''} onChange={(e)=>{
+                                    setNote(e.target.value)
+                                }}></textarea>
                             </div>
                         </div>
                     </div >

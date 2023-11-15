@@ -5,6 +5,10 @@ import { getLayout } from '../header/Header'
 import Link from 'next/link'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+// import url from '../../url/url'
+
+
+const url = process.env.NEXT_PUBLIC_API_HOST
 
 const testdata = [
     {
@@ -71,11 +75,11 @@ const ProbeList = () => {
 
   useEffect(()=>{
     // fetch('http://'+local+'/api/Probe')
-    fetch('http://192.168.25.68:8000/api/Probe')
+    fetch(`http://${url}/api/Probe`)
     .then((response) => response.json())
     .then((res)=>{
         setprobedata(res);
-        console.log('123');
+        // console.log('123');
     })
   },[])
     return (

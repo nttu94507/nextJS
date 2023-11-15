@@ -69,7 +69,7 @@ const HomePage = () => {
       <div className={`${styles.display} ${styles.probesstatus}`}>
         <Card data={counter} />
       </div>
-      <button onClick={()=>dispath(addprobebegin())}></button>
+      {/* <button onClick={()=>dispath(addprobebegin())}></button> */}
       <div className={`${styles.dashboardmid} ${styles.display}`}>
         <div className={`${styles.event} ${styles.display}`}>
           <div className={`${styles.eventtitle} ${styles.display}`}>待處理出貨</div>
