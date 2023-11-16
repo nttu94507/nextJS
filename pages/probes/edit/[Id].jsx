@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { use, useEffect, useState } from 'react'
+import { redirect } from 'next/dist/server/api-utils'
 // import url from '../../../url/url'
 
 const Edit = () => {
@@ -53,7 +54,11 @@ const Edit = () => {
             headers: {
                 'content-type': 'application/json'
             },
-        }).then((response) => response.json())
+        }).then((response) => 
+        {
+            response.json()
+            router.push('/probes/probelist')
+        })
     }
     return (
         <div className={`${styles.display}`}>
