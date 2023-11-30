@@ -1,10 +1,21 @@
 import styles from '../../styles/index.module.scss'
-import { getLayout } from '../header/Header'
 import Head from 'next/head'
+import {getLayout} from '../header/Header' 
 import Link from 'next/link'
 
+const Customer = () =>{
 
-const Probes = () => {
+    return(
+        <div>
+        <Head><title>{'客戶列表'}</title></Head>
+        <div className={`${styles.customer} `}>
+            <div className={` ${styles.flex}`}>誠品生活</div>
+            <div className={` ${styles.flex}`}>內容列</div>
+        </div>
+    </div>
+    )
+} 
+const Customers = () => {
     return (
         <div className={`${styles.display}`}>
             <Head><title>設備管理</title></Head>
@@ -24,11 +35,11 @@ const Probes = () => {
                     <div className={`${styles.probesteleport} ${styles.display}`}>
                         
                         {/* <div className={`${styles.display}`}> */}
-                        <Link href="/probes/edit"><div className={styles.probescube}>新增Probe</div></Link>
+                        <Link href="/customers/edit"><div className={styles.probescube}>新增客戶</div></Link>
                             {/* <div className={styles.probescube}>修改</div> */}
                         {/* </div>
                         <div> */}
-                            <Link href="/probes/probelist"><div className={styles.probescube}>查詢Probe</div></Link>
+                            <Link href="/customers/customerlist"><div className={styles.probescube}>查詢客戶</div></Link>
                             {/* <div className={styles.probescube}>刪除</div> */}
                         {/* </div> */}
 
@@ -48,5 +59,9 @@ const Probes = () => {
     )
 }
 
-Probes.getLayout = getLayout;
-export default Probes; 
+
+
+Customers.getLayout= getLayout;
+
+export default Customers
+

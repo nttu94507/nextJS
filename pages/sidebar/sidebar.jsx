@@ -9,17 +9,17 @@ export default function SideBar({ title }) {
                     {`設備管理`}
                 </div>
             </Link>
-            <Link href='/customer'>
+            <Link href='/customers'>
                 <div className={styles.option}>
                     {`客戶管理 `}
                 </div>
             </Link>
-            <Link href='/transfer'>
+            <Link href='/transfers'>
                 <div className={styles.option}>
                     {`出貨管理`}
                 </div>
             </Link>
-            <Link href='/staff'>
+            <Link href='/staffs'>
                 <div className={styles.option}>
                     {`員工管理 `}
                 </div>

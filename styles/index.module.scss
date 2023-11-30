@@ -144,7 +144,7 @@
         height: 94vh;
         // width: 60;
         // background-color: #6a91b1;
-        // margin: 1vh 1vw;
+        // margin: 0 30% 0 30%;
         display: flex;
         // flex-direction: column;
         align-items: center;
@@ -153,7 +153,7 @@
 
     .probesteleport {
         // background-color: red;
-        width: 30%;
+        // width: 30%;
         // flex: 1 auto;
         // flex-direction: column;
         flex-wrap: wrap
@@ -327,9 +327,6 @@
     .probeInfoCell {
         width: 30vw;
         height: 40px;
-        // justify-content: center;
-        // flex: 1 0 auto;
-        // flex-direction: column;
         margin: 10px;
     }
 
@@ -344,7 +341,6 @@
     }
     .textareacell{
         width: 30vw;
-        // height: 30vh;
         textarea{
             margin: 0;
         }
@@ -368,4 +364,17 @@
 
     .nomargin{
         margin: 0;
+    }
+
+
+
+    // 客戶管理
+
+    .customer{
+        border:1px solid;
+        border-color: #296fa8;
+        // display: flex;
+        justify-content: center;
+        margin: 2vh 10vw;
+        // flex-direction:row;
     }
