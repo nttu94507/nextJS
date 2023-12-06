@@ -2,7 +2,7 @@ import styles from '../../../styles/index.module.scss'
 import { getLayout } from '../../header/Header'
 import Link from 'next/link'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
 import { useState } from 'react'
 // import url from '../../../url/url'
 
@@ -32,6 +32,10 @@ const Edit = () => {
             headers: {
                 'content-type': 'application/json'
             },
+        }).then((response) => 
+        {
+            response.json()
+            router.push('/probes/probelist')
         })
         
     }

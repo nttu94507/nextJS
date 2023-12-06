@@ -34,13 +34,18 @@ const Edit = () => {
             FAEID: FAEID,
             note: note,
         }
-        // fetch(`http://${url}/api/Probe/`, {
-        //     method: 'POST',
-        //     body: JSON.stringify(probeInfo),
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        // })
+        fetch(`http://${url}/api/customer/`, {
+            method: 'POST',
+            body: JSON.stringify(customerInfo),
+            headers: {
+                'content-type': 'application/json'
+            },
+        }).then(()=>{
+            router.push('/customers/customerlist')
+        }).catch((error)=>{
+            alert(error)
+        })
+
 
         console.log(customerInfo)
         

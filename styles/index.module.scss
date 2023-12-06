@@ -271,6 +271,8 @@
         // justify-content: center;
         margin-left: 10px;
         flex: 3 0 auto;
+        max-width: 10vw;
+        overflow-x: auto;
     }
 
     .probestatus {
@@ -314,6 +316,8 @@
         border-radius: 10px ;
         justify-content: center;
         align-items: center;
+        max-height: 80vh;
+        // overflow-y: auto;
         // flex: 6 0 auto;
     }
     .probetitle{
@@ -322,6 +326,7 @@
 
     .probecontent{
         width: 95%;
+        overflow-y: auto;
     }
 
     .probeInfoCell {
