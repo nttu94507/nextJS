@@ -15,6 +15,8 @@ const Edit = () => {
     const [typecode, setTypecode] = useState('');
     const [price, setPrice] = useState('');
     const [note, setNote] = useState('');
+    const [errors, setErrors] = useState({});
+    const [isFormValid, setIsFormValid] = useState(false);
 
     const { Id } = router.query
 
@@ -36,6 +38,48 @@ const Edit = () => {
                 setNote(res[0].note)
             })
     }, [router.isReady])
+
+    useEffect(() => {
+        validateForm();
+    }, [probeId, hddcode, typecode, price]);
+
+    const validateForm = () => {
+        let errors = {};
+
+        // if (!probeId) {
+        //     errors.probeId = 'probeId is required.';
+        // } else if (!(Number(probeId))) {
+        //     errors.probeId = 'probeId no a number.';
+        // }
+
+        if (!hddcode) {
+            errors.hddcode = 'hddcode is required.';
+        }
+
+        if (!typecode) {
+            errors.typecode = 'typecode is required.';
+        }
+
+        if (!price) {
+            errors.price = 'price is required.';
+        } else if (!(Number(price))) {
+            errors.price = 'price no a number.';
+        }
+
+        setErrors(errors);
+        setIsFormValid(Object.keys(errors).length === 0);
+    }
+
+    const probeSubmit = () => {
+        if (isFormValid) {
+            console.log('Form submitted successfully!');
+            addprobe()
+        } else {
+            console.log('Form has errors. Please correct them.');
+            // errors.submit = '請檢查新增內容' 
+            // setErrors(errors);
+        }
+    };
 
     const updateProbeInfo = () => {
         // const {Id} = router.query
@@ -91,6 +135,7 @@ const Edit = () => {
                                 </select>
                             </div>
                         </div>
+                        {!!errors.hddcode && <p className={styles.error1}>{errors.hddcode}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>型號: </div>
                             <div className={` ${styles.imputcell}`}>
@@ -107,13 +152,15 @@ const Edit = () => {
                                 </select>
                             </div>
                         </div>
+                        {!!errors.typecode && <p className={styles.error1}>{errors.typecode}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>單價:  </div>
                             <div className={` ${styles.imputcell}`}>
                                 <input type='text' name='probeId' placeholder={price ? price : '請輸入 單價'} defaultValue={price ? price : ''} onChange={(e)=>{
-                                    setNote(e.target.value)}}/>
+                                    setPrice(e.target.value)}}/>
                             </div>
                         </div>
+                        {!!errors.price && <p className={styles.error1}>{errors.price}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.note} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>備註: </div>
                             <div className={` ${styles.textareacell}`}>
