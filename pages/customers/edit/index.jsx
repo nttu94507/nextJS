@@ -3,14 +3,14 @@ import { getLayout } from '../../header/Header'
 import Link from 'next/link'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 // import url from '../../../url/url'
 
 const url = process.env.NEXT_PUBLIC_API_HOST
 
 const Edit = () => {
     const router = useRouter();
-    // const [data, setData] = useState([]);
+    // const [data, setData] = useEffect()
     const [GUInumber, setGUInumber] = useState('');
     const [Organization_Name, setOrganization_Name] = useState('');
     const [Organization_Address, setOrganization_Address] = useState('');
@@ -20,6 +20,8 @@ const Edit = () => {
     const [SalesID, setSalesID] = useState('');
     const [FAEID, setFAEID] = useState('');
     const [note, setNote] = useState('');
+    const [errors, setErrors] = useState({});
+    const [isFormValid, setIsFormValid] = useState(false);
 
     const addcustomer=()=>{
         const customerInfo = {
@@ -43,13 +45,70 @@ const Edit = () => {
         }).then(()=>{
             router.push('/customers/customerlist')
         }).catch((error)=>{
-            alert(error)
+            console.log(error)
         })
 
 
         console.log(customerInfo)
         
     }
+
+    useEffect (() => {
+        validateForm();
+    }, [GUInumber, Organization_Name, Organization_Address, contractPerson,contractPerson_PhoneNumber,contractPerson_Email,SalesID,FAEID]);
+
+    const validateForm = () => {
+        let errors = {};
+
+        if (!GUInumber) {
+            errors.GUInumber = 'GUInumber is required.';
+        } else if (!(Number(GUInumber))) {
+            errors.GUInumber = 'GUInumber no a number.';
+        }
+
+        if (!Organization_Name) {
+            errors.Organization_Name = 'Organization_Name is required.';
+        }
+
+        if (!Organization_Address) {
+            errors.Organization_Address = 'Organization_Address is required.';
+        }
+
+        if (!contractPerson) {
+            errors.contractPerson = 'contractPerson is required.';
+        }
+
+        if (!contractPerson_PhoneNumber) {
+            errors.contractPerson_PhoneNumber = 'contractPerson_PhoneNumber is required.';
+        } else if (!(Number(contractPerson_PhoneNumber))) {
+            errors.GUInumber = 'contractPerson_PhoneNumber no a number.';
+        }
+
+        if (!contractPerson_Email) {
+            errors.contractPerson_Email = 'contractPerson_Email is required.';
+        }
+
+        if (!SalesID) {
+            errors.SalesID = 'SalesID is required.';
+        }
+
+        if (!FAEID) {
+            errors.FAEID = 'FAEID is required.';
+        }
+        setErrors(errors);
+        setIsFormValid(Object.keys(errors).length === 0);
+    }
+
+    const customerSubmit = () => {
+        if (isFormValid) {
+            console.log('Form submitted successfully!');
+            addcustomer()
+        } else {
+            console.log('Form has errors. Please correct them.');
+            // errors.submit = '請檢查新增內容' 
+            // setErrors(errors);
+        }
+    };
     
     return (
         <div className={`${styles.display}`}>
@@ -68,6 +127,7 @@ const Edit = () => {
                                 }}/>
                             </div>
                         </div>
+                        {!!errors.GUInumber && <p className={styles.error1}>{errors.GUInumber}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>公司名稱: </div>
                             <div className={` ${styles.imputcell}`}>
@@ -76,6 +136,7 @@ const Edit = () => {
                                 }}/>
                             </div>
                         </div>
+                        {!!errors.Organization_Name && <p className={styles.error1}>{errors.Organization_Name}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>公司地址: </div>
                             <div className={` ${styles.imputcell}`}>
@@ -84,6 +145,7 @@ const Edit = () => {
                                 }}/>
                             </div>
                         </div>
+                        {!!errors.Organization_Address && <p className={styles.error1}>{errors.Organization_Address}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>承辦人: </div>
                             <div className={` ${styles.imputcell}`}>
@@ -92,6 +154,7 @@ const Edit = () => {
                                 }}/>
                             </div>
                         </div>
+                        {!!errors.contractPerson && <p className={styles.error1}>{errors.contractPerson}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>承辦人電話: </div>
                             <div className={` ${styles.imputcell}`}>
@@ -100,6 +163,7 @@ const Edit = () => {
                                 }}/>
                             </div>
                         </div>
+                        {!!errors.contractPerson_PhoneNumber && <p className={styles.error1}>{errors.contractPerson_PhoneNumber}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>承辦人Email: </div>
                             <div className={` ${styles.imputcell}`}>
@@ -108,6 +172,7 @@ const Edit = () => {
                                 }}/>
                             </div>
                         </div>
+                        {!!errors.contractPerson_Email && <p className={styles.error1}>{errors.contractPerson_Email}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>負責業務: </div>
                             <div className={` ${styles.imputcell}`}>
@@ -120,6 +185,7 @@ const Edit = () => {
                                 </select>
                             </div>
                         </div>
+                        {!!errors.SalesID && <p className={styles.error1}>{errors.SalesID}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>負責工程師: </div>
                             <div className={` ${styles.imputcell}`}>
@@ -136,6 +202,7 @@ const Edit = () => {
                                 </select>
                             </div>
                         </div>
+                        {!!errors.FAEID && <p className={styles.error1}>{errors.FAEID}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.note} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>備註: </div>
                             <div className={` ${styles.textareacell}`}>
@@ -150,7 +217,7 @@ const Edit = () => {
                             router.back()
                         }}>返回</div>
                         <div className={`${styles.flex1} ${styles.display} ${styles.btnright}`} onClick={()=>{
-                            addcustomer()
+                            customerSubmit()
                         }}>送出</div>
                     </div>
                 </div>
