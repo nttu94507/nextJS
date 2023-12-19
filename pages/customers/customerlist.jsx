@@ -50,61 +50,61 @@ const customerlist = () => {
 
     const Cardmap = (data) => {
 
-        const disable = (Id) => {
+        // const disable = (Id) => {
 
-            const action = confirm('確定要停用?')
-            if (action) {
-                const probeInfo = {
-                    id: Id,
-                }
-                fetch(`http://${url}/api/Probe/invisible`, {
-                    method: 'POST',
-                    body: JSON.stringify(probeInfo),
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                }).then((response) => {
-                    fetch(`http://${url}/api/Probe`)
-                        .then((response) => response.json())
-                        .then((res) => {
-                            setprobedata(res);
-                            // console.log('123');
-                        })
-                }
-                )
+        //     const action = confirm('確定要停用?')
+        //     if (action) {
+        //         const probeInfo = {
+        //             id: Id,
+        //         }
+        //         fetch(`http://${url}/api/Probe/invisible`, {
+        //             method: 'POST',
+        //             body: JSON.stringify(probeInfo),
+        //             headers: {
+        //                 'content-type': 'application/json'
+        //             },
+        //         }).then((response) => {
+        //             fetch(`http://${url}/api/Probe`)
+        //                 .then((response) => response.json())
+        //                 .then((res) => {
+        //                     setprobedata(res);
+        //                     // console.log('123');
+        //                 })
+        //         }
+        //         )
 
-            } else {
-                console.log('取消動作')
-            }
-        }
+        //     } else {
+        //         console.log('取消動作')
+        //     }
+        // }
         // console.log(data.d)
         if (data.d.length == '') {
-            return <div>暫無資料</div>
+            return <div>暫無客戶資料</div>
         } else {
             return data.d.map(dat => (
 
-                <div className={`${styles.card}  ${styles.display}`}>
+                <div className={`${styles.card} = ${styles.display}`}>
                     <div className={`${styles.cardupper} ${styles.display} `}>
                         <div className={`${styles.probeid} ${styles.display}`}>
-                             {dat.probeId}{/*客戶名稱 */}
+                             {dat.Organization_Name}{/*客戶名稱 */}
                         </div>
                         <div className={`${styles.probestatus} ${styles.display}`}>
-                            {dat.status}{/*保固到期日 */}
+                            {dat.Maintenance_Agreement_at}{/*保固到期日 */}
                         </div>
                     </div>
                     <div className={`${styles.cardcontent}`}>
-                        <div>Probe 數量:{dat.type}</div>
-                        <div>待解Issue:{dat.ownerName}</div>
+                        <div>承辦人員:{dat.contractPerson}</div>
+                        <div>聯繫方式:{dat.contractPerson_PhoneNumber}</div>
                         {/* <div>批次:{dat.createdate}</div> */}
                         {/* <div>硬碟大小:{dat.harddiskdrive}</div>
-                        <div>單價:{dat.price}</div>
-                        <div>備註:{dat.note ? dat.note : ''}</div> */}
+                        <div>單價:{dat.price}</div> */}
+                        <div>備註:{dat.note ? dat.note : ''}</div>
                     </div>
                     <div className={`${styles.cardbuttom} ${styles.display}`}>
-                        <Link href={`/probes/edit/${dat.id}`}><div className={`${styles.flex1} ${styles.justfy} ${styles.display} ${styles.btnleft}`}>修改</div></Link>
-                        <div className={`${styles.flex1} ${styles.justfy} ${styles.display} ${styles.btnright}`} onClick={() => {
-                            disable(`${dat.id}`)
-                        }}>停用</div>
+                        <Link href={`/customers/edit/${dat.id}`}><div className={`${styles.flex1} ${styles.justfy} ${styles.display} ${styles.btnleft}`}>修改</div></Link>
+                        <Link href={`/customers/detail/${dat.id}`}><div className={`${styles.flex1} ${styles.justfy} ${styles.display} ${styles.btnright}`} onClick={() => {
+                            detail(`${dat.id}`)
+                        }}>詳細</div></Link>
                     </div>
                 </div>
             )
