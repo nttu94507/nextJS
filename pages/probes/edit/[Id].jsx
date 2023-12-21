@@ -36,6 +36,7 @@ const Edit = () => {
                 setTypecode(res[0].typecode)
                 setPrice(res[0].price)
                 setNote(res[0].note)
+                console.log(res)
             })
     }, [router.isReady])
 
@@ -125,12 +126,12 @@ const Edit = () => {
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>硬碟: </div>
                             <div className={` ${styles.imputcell}`}>
-                                <select name='harddiskdrive' required value={hddcode} onChange={(e) => {
+                                <select name='harddiskdrive' required value={hddcode?hddcode:''} onChange={(e) => {
                                     setHddcode(e.target.value)
                                     // console.log(hddcode)
                                 }}>
                                     <option value={""} >請選擇容量大小</option>
-                                    <option value={0} >8GB</option>
+                                    <option value={2} >8GB</option>
                                     <option value={1} >16GB</option>
                                 </select>
                             </div>
@@ -143,7 +144,7 @@ const Edit = () => {
                                     setTypecode(e.target.value)
                                 }}>
                                     <option value={""}>請選擇型號</option>
-                                    <option value={0}>P110</option>
+                                    <option value={6}>P110</option>
                                     <option value={1}>P120</option>
                                     <option value={2}>P220</option>
                                     <option value={3}>P360</option>

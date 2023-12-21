@@ -317,6 +317,7 @@
         justify-content: center;
         align-items: center;
         max-height: 80vh;
+        min-width: 30vw;
         // overflow-y: auto;
         // flex: 6 0 auto;
     }
@@ -330,13 +331,15 @@
     }
 
     .probeInfoCell {
-        width: 30vw;
+        // width: 30vw;
+        // flex:1;
         height: 40px;
         margin: 10px;
     }
 
     .imputcell {
-        width:30vw ;
+        // width:30vw ;
+        flex:2;
         input{
             margin: 0;
         }
@@ -345,13 +348,14 @@
         }
     }
     .textareacell{
-        width: 30vw;
+        flex :2 ;
         textarea{
             margin: 0;
         }
     }
     .itemcell{
-        width: 10vw;
+        // width: 10vw;
+        flex:1;
     }
 
     .note{
@@ -387,4 +391,8 @@
     .error1{
         font-size: small;
         color: red;
+    }
+
+    .justfycenter{
+        justify-content: center;
     }

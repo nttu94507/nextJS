@@ -26,10 +26,10 @@ const Edit = () => {
     const { Id } = router.query
     const url = process.env.NEXT_PUBLIC_API_HOST
 
-    const addcustomer = () => {
+    const updatecustomer = () => {
         const customerInfo = {
-            // id: Id,
-            GUInumber: GUInumber,
+            id: Id,
+            // GUInumber: GUInumber,
             Organization_Name: Organization_Name,
             Organization_Address: Organization_Address,
             contractPerson: contractPerson,
@@ -37,16 +37,17 @@ const Edit = () => {
             contractPerson_Email: contractPerson_Email,
             SalesID: SalesID,
             FAEID: FAEID,
-            note: note,s
+            note: note,
         }
-        fetch(`http://${url}/api/customers/`, {
+        fetch(`http://${url}/api/customers/update`, {
             method: 'POST',
             body: JSON.stringify(customerInfo),
             headers: {
                 'content-type': 'application/json'
             },
         }).then(() => {
-            router.push('/customers/customerlist')
+            // router.push('/customers/customerlist')
+            console.log('更新完成')
         }).catch((error) => {
             console.log(error)
         })
@@ -128,7 +129,7 @@ const Edit = () => {
     const customerSubmit = () => {
         if (isFormValid) {
             console.log('Form submitted successfully!');
-            addcustomer()
+            updatecustomer()
         } else {
             console.log('Form has errors. Please correct them.');
             // errors.submit = '請檢查新增內容' 
@@ -147,10 +148,8 @@ const Edit = () => {
                     <div className={`${styles.probecontent}`}>
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>統一編號: </div>
-                            <div className={` ${styles.imputcell}`}>
-                                <input type='text' name='GUInumber' placeholder={'請輸入統一編號'}  value={GUInumber ? GUInumber : ''} onChange={(e) => {
-                                    setGUInumber(e.target.value)
-                                }} />
+                            <div className={` ${styles.imputcell} ${styles.display} ${styles.justfycenter}`}>{GUInumber}
+                                {/* <input type='text' name='GUInumber' placeholder={GUInumber}  defaultValue={GUInumber}  /> */}
                             </div>
                         </div>
                         {!!errors.GUInumber && <p className={styles.error1}>{errors.GUInumber}</p>}
@@ -206,7 +205,7 @@ const Edit = () => {
                                     setSalesID(e.target.value)
                                 }}>
                                     <option value={""}>請選擇業務</option>
-                                    <option value={0}>Jenlin</option>
+                                    <option value={2}>Jenlin</option>
                                     <option value={1}>Wade</option>
                                 </select>
                             </div>
@@ -219,7 +218,7 @@ const Edit = () => {
                                     setFAEID(e.target.value)
                                 }}>
                                     <option value={""}>請選擇工程師</option>
-                                    <option value={0}>Jason</option>
+                                    <option value={6}>Jason</option>
                                     <option value={1}>Joy</option>
                                     <option value={2}>Leo</option>
                                     <option value={3}>Bobby</option>
