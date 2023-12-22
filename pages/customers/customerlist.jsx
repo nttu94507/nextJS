@@ -50,34 +50,6 @@ const customerlist = () => {
 
     const Cardmap = (data) => {
 
-        // const disable = (Id) => {
-
-        //     const action = confirm('確定要停用?')
-        //     if (action) {
-        //         const probeInfo = {
-        //             id: Id,
-        //         }
-        //         fetch(`http://${url}/api/Probe/invisible`, {
-        //             method: 'POST',
-        //             body: JSON.stringify(probeInfo),
-        //             headers: {
-        //                 'content-type': 'application/json'
-        //             },
-        //         }).then((response) => {
-        //             fetch(`http://${url}/api/Probe`)
-        //                 .then((response) => response.json())
-        //                 .then((res) => {
-        //                     setprobedata(res);
-        //                     // console.log('123');
-        //                 })
-        //         }
-        //         )
-
-        //     } else {
-        //         console.log('取消動作')
-        //     }
-        // }
-        // console.log(data.d)
         if (data.d.length == '') {
             return <div>暫無客戶資料</div>
         } else {
@@ -102,9 +74,8 @@ const customerlist = () => {
                     </div>
                     <div className={`${styles.cardbuttom} ${styles.display}`}>
                         <Link href={`/customers/edit/${dat.id}`}><div className={`${styles.flex1} ${styles.justfy} ${styles.display} ${styles.btnleft}`}>修改</div></Link>
-                        <Link href={`/customers/detail/${dat.id}`}><div className={`${styles.flex1} ${styles.justfy} ${styles.display} ${styles.btnright}`} onClick={() => {
-                            detail(`${dat.id}`)
-                        }}>詳細</div></Link>
+                        <Link href={`/customers/infomation/${dat.id}`}><div className={`${styles.flex1} ${styles.justfy} ${styles.display} ${styles.btnright}`} 
+                        >詳細</div></Link>
                     </div>
                 </div>
             )
