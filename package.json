@@ -1,7 +1,7 @@
 {
     "scripts": {
         "dev": "next dev",
-        "build": "next build && nextjs-standalone-deployer.exe",
+        "build": "next build",
         "Jbuild":"next build && nextjs-standalone-deployer.exe",
         "start": "next start",
         "lint": "next lint"
