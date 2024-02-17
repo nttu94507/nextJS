@@ -1,7 +1,7 @@
 import { use, useState } from 'react';
 import Link from 'next/link';
 import styles from '../styles/index.module.scss'
-import { getLayout } from "./header/Header";
+import { getLayout } from "../componer/header/Header";
 // import SideBar from './sidebar/sidebar';
 // import { createStore } from 'redux'
 // import { useDispatch } from 'react-redux';
@@ -47,7 +47,7 @@ const counter = [
 
 const Card = (d) => {
   return d.data.map(card => {
-    return <div className={styles.dashboardcube}><div className={styles.cubeup}>{card.type}</div><div className={styles.cubebuttom}>{card.stock}/{card.total}</div></div>
+    return <div className={styles.dashboardcube} key={card.id}><div className={styles.cubeup}>{card.type}</div><div className={styles.cubebuttom}>{card.stock}/{card.total}</div></div>
   }
   )
 }

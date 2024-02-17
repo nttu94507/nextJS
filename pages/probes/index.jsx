@@ -1,5 +1,5 @@
 import styles from '../../styles/index.module.scss'
-import { getLayout } from '../header/Header'
+import { getLayout } from '../../componer/header/Header'
 import Head from 'next/head'
 import Link from 'next/link'
 

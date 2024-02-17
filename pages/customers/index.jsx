@@ -1,6 +1,6 @@
 import styles from '../../styles/index.module.scss'
 import Head from 'next/head'
-import {getLayout} from '../header/Header' 
+import {getLayout} from '../../componer/header/Header' 
 import Link from 'next/link'
 
 const Customer = () =>{

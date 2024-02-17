@@ -1,5 +1,5 @@
 import styles from '../../../styles/index.module.scss'
-import { getLayout } from '../../header/Header'
+import { getLayout } from '../../../componer/header/Header'
 import Link from 'next/link'
 import Head from 'next/head'
 import Router, { useRouter } from 'next/router'
@@ -41,7 +41,30 @@ const Edit = () => {
     }
 
     useEffect(() => {
-        validateForm();
+        let errors = {};
+
+        if (!probeId) {
+            errors.probeId = 'probeId is required.';
+        } else if (!(Number(probeId))) {
+            errors.probeId = 'probeId no a number.';
+        }
+
+        if (!hddcode) {
+            errors.hddcode = 'hddcode is required.';
+        }
+
+        if (!typecode) {
+            errors.typecode = 'typecode is required.';
+        }
+
+        if (!price) {
+            errors.price = 'price is required.';
+        } else if (!(Number(price))) {
+            errors.price = 'price no a number.';
+        }
+
+        setErrors(errors);
+        setIsFormValid(Object.keys(errors).length === 0);
     }, [probeId, hddcode, typecode, price]);
 
     const validateForm = () => {

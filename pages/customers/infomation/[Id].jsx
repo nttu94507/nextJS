@@ -1,11 +1,11 @@
 import styles from '../../../styles/index.module.scss'
-import { getLayout } from '../../header/Header'
+import { getLayout } from '../../../componer/header/Header'
 import Link from 'next/link'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { use, useEffect, useState } from 'react'
 
-const infomation = () => {
+const Infomation = () => {
     const router = useRouter();
 
     const { Id } = router.query
@@ -23,5 +23,5 @@ const infomation = () => {
     )
 }
 
-infomation.getLayout = getLayout
-export default infomation;
+Infomation.getLayout = getLayout
+export default Infomation;

@@ -1,4 +1,4 @@
-import { getLayout } from "../header/Header";
+import { getLayout } from "../../componer/header/Header";
 import styles from '../../styles/index.module.scss'
 import Link from 'next/link'
 import Head from 'next/head'
@@ -34,7 +34,7 @@ const testdata = [
     },
 ]
 
-const customerlist = () => {
+const Customerlist = () => {
     const [customerdata, setcustomerdata] = useState([]);
     const router = useRouter();
 
@@ -55,7 +55,7 @@ const customerlist = () => {
         } else {
             return data.d.map(dat => (
 
-                <div className={`${styles.card} = ${styles.display}`}>
+                <div className={`${styles.card}  ${styles.display}`} key={dat.id}>
                     <div className={`${styles.cardupper} ${styles.display} `}>
                         <div className={`${styles.probeid} ${styles.display}`}>
                              {dat.Organization_Name}{/*客戶名稱 */}
@@ -95,6 +95,6 @@ const customerlist = () => {
     )
 }
 
-customerlist.getLayout = getLayout;
+Customerlist.getLayout = getLayout;
 
-export default customerlist
+export default Customerlist

@@ -1,11 +1,13 @@
 import styles from '../../../styles/index.module.scss'
-import { getLayout } from '../../header/Header'
+import { getLayout } from '../../../componer/header/Header'
 import Link from 'next/link'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { use, useEffect, useState } from 'react'
 import { redirect } from 'next/dist/server/api-utils'
 // import url from '../../../url/url'
+
+
 
 const Edit = () => {
     const router = useRouter();
@@ -22,10 +24,12 @@ const Edit = () => {
 
     const url = process.env.NEXT_PUBLIC_API_HOST
 
+
+
     useEffect(() => {
         if (!router.isReady) return;
         console.log(process.env.NEXT_PUBLIC_API_HOST)
-        
+
         fetch(`http://${url}/api/Probe/detail/${Id}`)
             .then((response) => response.json())
             .then((res) => {
@@ -41,7 +45,30 @@ const Edit = () => {
     }, [router.isReady])
 
     useEffect(() => {
-        validateForm();
+        let errors = {};
+
+        // if (!probeId) {
+        //     errors.probeId = 'probeId is required.';
+        // } else if (!(Number(probeId))) {
+        //     errors.probeId = 'probeId no a number.';
+        // }
+
+        if (!hddcode) {
+            errors.hddcode = 'hddcode is required.';
+        }
+
+        if (!typecode) {
+            errors.typecode = 'typecode is required.';
+        }
+
+        if (!price) {
+            errors.price = 'price is required.';
+        } else if (!(Number(price))) {
+            errors.price = 'price no a number.';
+        }
+
+        setErrors(errors);
+        setIsFormValid(Object.keys(errors).length === 0);
     }, [probeId, hddcode, typecode, price]);
 
     const validateForm = () => {
@@ -99,8 +126,7 @@ const Edit = () => {
             headers: {
                 'content-type': 'application/json'
             },
-        }).then((response) => 
-        {
+        }).then((response) => {
             response.json()
             router.push('/probes/probelist')
         })
@@ -126,7 +152,7 @@ const Edit = () => {
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>硬碟: </div>
                             <div className={` ${styles.imputcell}`}>
-                                <select name='harddiskdrive' required value={hddcode?hddcode:''} onChange={(e) => {
+                                <select name='harddiskdrive' required value={hddcode ? hddcode : ''} onChange={(e) => {
                                     setHddcode(e.target.value)
                                     // console.log(hddcode)
                                 }}>
@@ -157,15 +183,16 @@ const Edit = () => {
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>單價:  </div>
                             <div className={` ${styles.imputcell}`}>
-                                <input type='text' name='probeId' placeholder={price ? price : '請輸入 單價'} defaultValue={price ? price : ''} onChange={(e)=>{
-                                    setPrice(e.target.value)}}/>
+                                <input type='text' name='probeId' placeholder={price ? price : '請輸入 單價'} defaultValue={price ? price : ''} onChange={(e) => {
+                                    setPrice(e.target.value)
+                                }} />
                             </div>
                         </div>
                         {!!errors.price && <p className={styles.error1}>{errors.price}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.note} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>備註: </div>
                             <div className={` ${styles.textareacell}`}>
-                                <textarea name='note' defaultValue={note ? note : ''} onChange={(e)=>{
+                                <textarea name='note' defaultValue={note ? note : ''} onChange={(e) => {
                                     setNote(e.target.value)
                                 }}></textarea>
                             </div>

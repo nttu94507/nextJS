@@ -1,10 +1,13 @@
 import styles from '../../../styles/index.module.scss'
-import { getLayout } from '../../header/Header'
+import { getLayout } from '../../../componer/header/Header'
 import Link from 'next/link'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { use, useEffect, useState } from 'react'
 // import url from '../../../url/url'
+
+// const { Id } = router.query
+// const url = process.env.NEXT_PUBLIC_API_HOST
 
 
 
@@ -58,7 +61,45 @@ const Edit = () => {
     }
 
     useEffect(() => {
-        validateForm();
+        let errors = {};
+
+        if (!GUInumber) {
+            errors.GUInumber = 'GUInumber is required.';
+        } else if (!(Number(GUInumber))) {
+            errors.GUInumber = 'GUInumber no a number.';
+        }
+
+        if (!Organization_Name) {
+            errors.Organization_Name = 'Organization_Name is required.';
+        }
+
+        if (!Organization_Address) {
+            errors.Organization_Address = 'Organization_Address is required.';
+        }
+
+        if (!contractPerson) {
+            errors.contractPerson = 'contractPerson is required.';
+        }
+
+        if (!contractPerson_PhoneNumber) {
+            errors.contractPerson_PhoneNumber = 'contractPerson_PhoneNumber is required.';
+        } else if (!(Number(contractPerson_PhoneNumber))) {
+            errors.GUInumber = 'contractPerson_PhoneNumber no a number.';
+        }
+
+        if (!contractPerson_Email) {
+            errors.contractPerson_Email = 'contractPerson_Email is required.';
+        }
+
+        if (!SalesID) {
+            errors.SalesID = 'SalesID is required.';
+        }
+
+        if (!FAEID) {
+            errors.FAEID = 'FAEID is required.';
+        }
+        setErrors(errors);
+        setIsFormValid(Object.keys(errors).length === 0);
     }, [GUInumber, Organization_Name, Organization_Address, contractPerson, contractPerson_PhoneNumber, contractPerson_Email, SalesID, FAEID]);
 
 
@@ -81,7 +122,6 @@ const Edit = () => {
                 setFAEID(res[0].FAEID)
                 setNote(res[0].note)
             })
-
     }, [router.isReady])
 
     const validateForm = () => {

@@ -1,7 +1,7 @@
 
 // import Header from '../Header/header';
 import styles from '../../styles/index.module.scss'
-import { getLayout } from '../header/Header'
+import { getLayout } from '../../componer/header/Header'
 import Link from 'next/link'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
@@ -89,8 +89,7 @@ const ProbeList = () => {
 
 
             return data.d.map(dat => (
-
-                <div className={`${styles.card}  ${styles.display}`}>
+                <div className={`${styles.card}  ${styles.display}`} key={dat.id}>
                     <div className={`${styles.cardupper} ${styles.display} `}>
                         <div className={`${styles.probeid} ${styles.display}`}>
                             {dat.probeId}
@@ -120,7 +119,6 @@ const ProbeList = () => {
     }
 
     return (
-
         <div className={`${styles.display}`}>
             <Head><title>查詢設備</title></Head>
             {/* <Header title="probe"/> */}
