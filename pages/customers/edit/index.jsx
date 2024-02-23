@@ -136,17 +136,6 @@ const Edit = () => {
         setErrors(errors);
         setIsFormValid(Object.keys(errors).length === 0);
     }
-
-    const customerSubmit = () => {
-        if (isFormValid) {
-            console.log('Form submitted successfully!');
-            addcustomer()
-        } else {
-            console.log('Form has errors. Please correct them.');
-            // errors.submit = '請檢查新增內容' 
-            // setErrors(errors);
-        }
-    };
     
     return (
         <div className={`${styles.display}`}>
@@ -218,7 +207,7 @@ const Edit = () => {
                                     setSalesID(e.target.value)
                                 }}>
                                     <option value={""}>請選擇業務</option>
-                                    <option value={0}>Jenlin</option>
+                                    <option value={2}>Jenlin</option>
                                     <option value={1}>Wade</option>
                                 </select>
                             </div>
@@ -231,7 +220,7 @@ const Edit = () => {
                                     setFAEID(e.target.value)
                                 }}>
                                     <option value={""}>請選擇工程師</option>
-                                    <option value={0}>Jason</option>
+                                    <option value={6}>Jason</option>
                                     <option value={1}>Joy</option>
                                     <option value={2}>Leo</option>
                                     <option value={3}>Bobby</option>

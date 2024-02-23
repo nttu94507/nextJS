@@ -18,7 +18,7 @@ const Customer = () =>{
 const Customers = () => {
     return (
         <div className={`${styles.display}`}>
-            <Head><title>設備管理</title></Head>
+            <Head><title>客戶管理</title></Head>
             {/* <Header title="probe" /> */}
             <div className={styles.probescontent}>
                 <div className={styles.probesupper}>

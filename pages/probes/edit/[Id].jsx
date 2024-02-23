@@ -33,7 +33,7 @@ const Edit = () => {
         fetch(`http://${url}/api/Probe/detail/${Id}`)
             .then((response) => response.json())
             .then((res) => {
-                console.log(res)
+                console.log(res[0])
                 setData(res[0]);
                 setProbeId(res[0].probeId)
                 setHddcode(res[0].hddcode)

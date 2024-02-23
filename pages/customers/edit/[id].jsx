@@ -13,7 +13,7 @@ import { use, useEffect, useState } from 'react'
 
 const Edit = () => {
     const router = useRouter();
-    const [data, setData] = useState()
+    const [data, setData] = useState();
     const [GUInumber, setGUInumber] = useState('');
     const [Organization_Name, setOrganization_Name] = useState('');
     const [Organization_Address, setOrganization_Address] = useState('');
@@ -32,7 +32,7 @@ const Edit = () => {
     const updatecustomer = () => {
         const customerInfo = {
             id: Id,
-            // GUInumber: GUInumber,
+            GUInumber: GUInumber,
             Organization_Name: Organization_Name,
             Organization_Address: Organization_Address,
             contractPerson: contractPerson,
@@ -110,7 +110,7 @@ const Edit = () => {
         fetch(`http://${url}/api/customers/detail/${Id}`)
             .then((response) => response.json())
             .then((res) => {
-                console.log(res)
+                // console.log(res)
                 setData(res[0]);
                 setGUInumber(res[0].GUInumber)
                 setOrganization_Name(res[0].Organization_Name)
@@ -166,16 +166,6 @@ const Edit = () => {
         setIsFormValid(Object.keys(errors).length === 0);
     }
 
-    const customerSubmit = () => {
-        if (isFormValid) {
-            console.log('Form submitted successfully!');
-            updatecustomer()
-        } else {
-            console.log('Form has errors. Please correct them.');
-            // errors.submit = '請檢查新增內容' 
-            // setErrors(errors);
-        }
-    };
 
     return (
         <div className={`${styles.display}`}>
@@ -254,11 +244,13 @@ const Edit = () => {
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>負責工程師: </div>
                             <div className={` ${styles.imputcell}`}>
-                                <select name='FAEID' required value={FAEID ? FAEID : ''} onChange={(e) => {
+                                <select name='FAEID' required defaultValue={""} value={FAEID} onChange={(e) => {
                                     setFAEID(e.target.value)
                                 }}>
                                     <option value={""}>請選擇工程師</option>
-                                    <option value={6}>Jason</option>
+                                    <option value={0}>Dog</option>
+                                   
+                                    <option value={6}>og</option>
                                     <option value={1}>Joy</option>
                                     <option value={2}>Leo</option>
                                     <option value={3}>Bobby</option>
