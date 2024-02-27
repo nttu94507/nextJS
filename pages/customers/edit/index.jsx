@@ -36,7 +36,7 @@ const Edit = () => {
             FAEID: FAEID,
             note: note,
         }
-        fetch(`http://${url}/api/customer/`, {
+        fetch(`http://${url}/api/customers/`, {
             method: 'POST',
             body: JSON.stringify(customerInfo),
             headers: {

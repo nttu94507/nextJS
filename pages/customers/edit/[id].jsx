@@ -26,12 +26,12 @@ const Edit = () => {
     const [errors, setErrors] = useState({});
     const [isFormValid, setIsFormValid] = useState(false);
 
-    const { Id } = router.query
+    const { id } = router.query
     const url = process.env.NEXT_PUBLIC_API_HOST
 
-    const updatecustomer = () => {
+    const customerSubmit = () => {
         const customerInfo = {
-            id: Id,
+            id: id,
             GUInumber: GUInumber,
             Organization_Name: Organization_Name,
             Organization_Address: Organization_Address,
@@ -49,8 +49,9 @@ const Edit = () => {
                 'content-type': 'application/json'
             },
         }).then(() => {
-            // router.push('/customers/customerlist')
+            router.push('/customers/customerlist')
             console.log('更新完成')
+
         }).catch((error) => {
             console.log(error)
         })
@@ -105,12 +106,12 @@ const Edit = () => {
 
     useEffect(() => {
         if (!router.isReady) return;
-        console.log(Id)
+        console.log(id)
 
-        fetch(`http://${url}/api/customers/detail/${Id}`)
+        fetch(`http://${url}/api/customers/detail/${id}`)
             .then((response) => response.json())
             .then((res) => {
-                // console.log(res)
+                console.log(res)
                 setData(res[0]);
                 setGUInumber(res[0].GUInumber)
                 setOrganization_Name(res[0].Organization_Name)
