@@ -11,9 +11,14 @@ const url = process.env.NEXT_PUBLIC_API_HOST
 const Edit = () => {
     const router = useRouter();
     // const [data, setData] = useEffect()
-    const [GUInumber, setGUInumber] = useState('');
-    const [Organization_Name, setOrganization_Name] = useState('');
-    const [Organization_Address, setOrganization_Address] = useState('');
+    const [employeeID, setemployeeID] = useState('');
+    const [employee_Name, setEmployee_Name] = useState('');
+    const [employee_Address, setEmployee_Address] = useState('');
+    const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [birthday, setBirthday] = useState('');
+    const [NationalID, setNationalID] = useState('');
+
     const [contractPerson, setcontractPerson] = useState('');
     const [contractPerson_PhoneNumber, setcontractPerson_PhoneNumber] = useState('');
     const [contractPerson_Email, setcontractPerson_Email] = useState('');
@@ -23,116 +28,110 @@ const Edit = () => {
     const [errors, setErrors] = useState({});
     const [isFormValid, setIsFormValid] = useState(false);
 
-    const addcustomer=()=>{
-        const customerInfo = {
+    const addcustomer = () => {
+        const employeeInfo = {
             // id: Id,
-            GUInumber: GUInumber,
-            Organization_Name:Organization_Name,
-            Organization_Address:Organization_Address,
-            contractPerson:contractPerson,
-            contractPerson_PhoneNumber:contractPerson_PhoneNumber,
-            contractPerson_Email:contractPerson_Email,
-            SalesID: SalesID,
-            FAEID: FAEID,
-            note: note,
+            // GUInumber: GUInumber,
+            employee_Name: employee_Name,
+            // Organization_Address: Organization_Address,
+            // contractPerson: contractPerson,
+            // contractPerson_PhoneNumber: contractPerson_PhoneNumber,
+            // contractPerson_Email: contractPerson_Email,
+            // SalesID: SalesID,
+            // FAEID: FAEID,
+            // note: note,
         }
-        fetch(`http://${url}/api/customer/`, {
+        fetch(`http://${url}/api/employee/`, {
             method: 'POST',
-            body: JSON.stringify(customerInfo),
+            body: JSON.stringify(employeeInfo),
             headers: {
                 'content-type': 'application/json'
             },
-        }).then(()=>{
-            router.push('/customers/customerlist')
-        }).catch((error)=>{
+        }).then(() => {
+            router.push('/employees/employeeslist')
+        }).catch((error) => {
             console.log(error)
         })
 
 
-        console.log(customerInfo)
-        
+        // console.log(customerInfo)
+
     }
 
-    useEffect (() => {
+    useEffect(() => {
         let errors = {};
 
-        if (!GUInumber) {
-            errors.GUInumber = 'GUInumber is required.';
-        } else if (!(Number(GUInumber))) {
-            errors.GUInumber = 'GUInumber no a number.';
+        // if (!employeeID) {
+        //     errors.employeeID = 'employee ID is required.';
+        // } else if (!(Number(employeeID))) {
+        //     errors.employeeID = 'employee ID no a number.';
+        // }
+
+        if (!employee_Name) {
+            errors.employee_Name = 'Name is required.';
         }
 
-        if (!Organization_Name) {
-            errors.Organization_Name = 'Organization_Name is required.';
-        }
+        // if (!employee_Address) {
+        //     errors.employee_Address = 'Address is required.';
+        // }
 
-        if (!Organization_Address) {
-            errors.Organization_Address = 'Organization_Address is required.';
-        }
+        // if (!email) {
+        //     errors.email = 'email is required.';
+        // }
 
-        if (!contractPerson) {
-            errors.contractPerson = 'contractPerson is required.';
-        }
+        // if (!contractPerson) {
+        //     errors.contractPerson = 'contractPerson is required.';
+        // }
 
-        if (!contractPerson_PhoneNumber) {
-            errors.contractPerson_PhoneNumber = 'contractPerson_PhoneNumber is required.';
-        } else if (!(Number(contractPerson_PhoneNumber))) {
-            errors.GUInumber = 'contractPerson_PhoneNumber no a number.';
-        }
+        // if (!contractPerson_PhoneNumber) {
+        //     errors.contractPerson_PhoneNumber = 'PhoneNumber is required.';
+        // } else if (!(Number(contractPerson_PhoneNumber))) {
+        //     errors.GUInumber = 'contractPerson_PhoneNumber no a number.';
+        // }
 
-        if (!contractPerson_Email) {
-            errors.contractPerson_Email = 'contractPerson_Email is required.';
-        }
-
-        if (!SalesID) {
-            errors.SalesID = 'SalesID is required.';
-        }
-
-        if (!FAEID) {
-            errors.FAEID = 'FAEID is required.';
-        }
         setErrors(errors);
         setIsFormValid(Object.keys(errors).length === 0);
-    }, [GUInumber, Organization_Name, Organization_Address, contractPerson,contractPerson_PhoneNumber,contractPerson_Email,SalesID,FAEID]);
+        // }, [employeeID, employee_Name, employee_Address, contractPerson,contractPerson_PhoneNumber,contractPerson_Email,SalesID,FAEID]);
+    }, [employee_Name]);
 
     const validateForm = () => {
         let errors = {};
 
-        if (!GUInumber) {
-            errors.GUInumber = 'GUInumber is required.';
-        } else if (!(Number(GUInumber))) {
-            errors.GUInumber = 'GUInumber no a number.';
-        }
+        // if (!GUInumber) {
+        //     errors.GUInumber = 'GUInumber is required.';
+        // } else if (!(Number(GUInumber))) {
+        //     errors.GUInumber = 'GUInumber no a number.';
+        // }
 
         if (!Organization_Name) {
             errors.Organization_Name = 'Organization_Name is required.';
         }
 
-        if (!Organization_Address) {
-            errors.Organization_Address = 'Organization_Address is required.';
-        }
+        // if (!Organization_Address) {
+        //     errors.Organization_Address = 'Organization_Address is required.';
+        // }
 
-        if (!contractPerson) {
-            errors.contractPerson = 'contractPerson is required.';
-        }
+        // if (!contractPerson) {
+        //     errors.contractPerson = 'contractPerson is required.';
+        // }
 
-        if (!contractPerson_PhoneNumber) {
-            errors.contractPerson_PhoneNumber = 'contractPerson_PhoneNumber is required.';
-        } else if (!(Number(contractPerson_PhoneNumber))) {
-            errors.GUInumber = 'contractPerson_PhoneNumber no a number.';
-        }
+        // if (!contractPerson_PhoneNumber) {
+        //     errors.contractPerson_PhoneNumber = 'contractPerson_PhoneNumber is required.';
+        // } else if (!(Number(contractPerson_PhoneNumber))) {
+        //     errors.GUInumber = 'contractPerson_PhoneNumber no a number.';
+        // }
 
-        if (!contractPerson_Email) {
-            errors.contractPerson_Email = 'contractPerson_Email is required.';
-        }
+        // if (!contractPerson_Email) {
+        //     errors.contractPerson_Email = 'contractPerson_Email is required.';
+        // }
 
-        if (!SalesID) {
-            errors.SalesID = 'SalesID is required.';
-        }
+        // if (!SalesID) {
+        //     errors.SalesID = 'SalesID is required.';
+        // }
 
-        if (!FAEID) {
-            errors.FAEID = 'FAEID is required.';
-        }
+        // if (!FAEID) {
+        //     errors.FAEID = 'FAEID is required.';
+        // }
         setErrors(errors);
         setIsFormValid(Object.keys(errors).length === 0);
     }
@@ -147,7 +146,7 @@ const Edit = () => {
             // setErrors(errors);
         }
     };
-    
+
     return (
         <div className={`${styles.display}`}>
             <Head><title>{'新增員工資訊'}</title></Head>
@@ -157,60 +156,87 @@ const Edit = () => {
                 <div className={`${styles.probeInfo} ${styles.display}`}>
                     <div className={`${styles.probetitle} ${styles.display}`}><h1>{'新增員工資訊'}</h1></div>
                     <div className={`${styles.probecontent}`}>
-                        <div className={`${styles.probeInfoCell} ${styles.display}`}>
+                        {/* <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>員工編號: </div>
                             <div className={` ${styles.imputcell}`}>
                                 <input type='text' name='staffID' placeholder={'請輸入員工編號'} onChange={(e)=>{
                                     setGUInumber(e.target.value)
                                 }}/>
                             </div>
-                        </div>
+                        </div> */}
                         {!!errors.GUInumber && <p className={styles.error1}>{errors.GUInumber}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
-                            <div className={`${styles.itemcell}`}>公司名稱: </div>
+                            <div className={`${styles.itemcell}`}>員工姓名: </div>
                             <div className={` ${styles.imputcell}`}>
-                                <input type='text' name='Organization_Name' placeholder={'請輸入公司名稱'} onChange={(e)=>{
-                                    setOrganization_Name(e.target.value)
+                                <input type='text' name='employee_Name' placeholder={'請輸入員工姓名'} onChange={(e) => {
+                                    setEmployee_Name(e.target.value)
+                                }} />
+                            </div>
+                        </div>
+                        {!!errors.employee_Name && <p className={styles.error1}>{errors.employee_Name}</p>}
+                        {/* <div className={`${styles.probeInfoCell} ${styles.display}`}>
+                            <div className={`${styles.itemcell}`}>生日: </div>
+                            <div className={` ${styles.imputcell}`}>
+                                <input type='date' name='birthday' placeholder={'請輸入身分證字號'} onChange={(e)=>{
+                                    setBirthday(e.target.value)
                                 }}/>
                             </div>
                         </div>
-                        {!!errors.Organization_Name && <p className={styles.error1}>{errors.Organization_Name}</p>}
+                        {!!errors.birthday && <p className={styles.error1}>{errors.birthday}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
-                            <div className={`${styles.itemcell}`}>公司地址: </div>
+                            <div className={`${styles.itemcell}`}>住址: </div>
                             <div className={` ${styles.imputcell}`}>
-                                <input type='text' name='Organization_Address' placeholder={'請輸入公司地址'} onChange={(e)=>{
-                                    setOrganization_Address(e.target.value)
+                                <input type='text' name='employee_Address' placeholder={'請輸入住址'} onChange={(e)=>{
+                                    setEmployee_Address(e.target.value)
                                 }}/>
                             </div>
                         </div>
-                        {!!errors.Organization_Address && <p className={styles.error1}>{errors.Organization_Address}</p>}
+                        {!!errors.employee_Address && <p className={styles.error1}>{errors.employee_Address}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
-                            <div className={`${styles.itemcell}`}>承辦人: </div>
+                            <div className={`${styles.itemcell}`}>電話: </div>
                             <div className={` ${styles.imputcell}`}>
-                                <input type='text' name='contractPerson' placeholder={'請輸入承辦人姓名'} onChange={(e)=>{
+                                <input type='text' name='phoneNumber' placeholder={'請輸入員工電話'} onChange={(e)=>{
+                                        setPhoneNumber(e.target.value)
+                                }}/>
+                            </div>
+                        </div>
+                        {!!errors.contractPerson_PhoneNumber && <p className={styles.error1}>{errors.contractPerson_PhoneNumber}</p>}
+                        <div className={`${styles.probeInfoCell} ${styles.display}`}>
+                            <div className={`${styles.itemcell}`}>Email: </div>
+                            <div className={` ${styles.imputcell}`}>
+                                <input type='text' name='email' placeholder={'請輸入Email'} onChange={(e)=>{
+                                    setEmail(e.target.value)
+                                }}/>
+                            </div>
+                        </div>
+                        {!!errors.email && <p className={styles.error1}>{errors.email}</p>}
+                        <div className={`${styles.probeInfoCell} ${styles.display}`}>
+                            <div className={`${styles.itemcell}`}>緊急聯絡人: </div>
+                            <div className={` ${styles.imputcell}`}>
+                                <input type='text' name='contractPerson' placeholder={'請輸入緊急聯絡人姓名'} onChange={(e)=>{
                                     setcontractPerson(e.target.value)
                                 }}/>
                             </div>
                         </div>
                         {!!errors.contractPerson && <p className={styles.error1}>{errors.contractPerson}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
-                            <div className={`${styles.itemcell}`}>承辦人電話: </div>
+                            <div className={`${styles.itemcell}`}>聯絡人電話: </div>
                             <div className={` ${styles.imputcell}`}>
-                                <input type='text' name='contractPerson_PhoneNumber' placeholder={'請輸入承辦人電話'} onChange={(e)=>{
+                                <input type='text' name='contractPerson_PhoneNumber' placeholder={'請輸入緊急聯絡人電話'} onChange={(e)=>{
                                     setcontractPerson_PhoneNumber(e.target.value)
                                 }}/>
                             </div>
                         </div>
-                        {!!errors.contractPerson_PhoneNumber && <p className={styles.error1}>{errors.contractPerson_PhoneNumber}</p>}
-                        <div className={`${styles.probeInfoCell} ${styles.display}`}>
+                        {!!errors.contractPerson_PhoneNumber && <p className={styles.error1}>{errors.contractPerson_PhoneNumber}</p>} */}
+                        {/* <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>承辦人Email: </div>
                             <div className={` ${styles.imputcell}`}>
                                 <input type='text' name='contractPerson_Email' placeholder={'請輸入承辦人Email'} onChange={(e)=>{
                                     setcontractPerson_Email(e.target.value)
                                 }}/>
                             </div>
-                        </div>
-                        {!!errors.contractPerson_Email && <p className={styles.error1}>{errors.contractPerson_Email}</p>}
+                        </div> */}
+                        {/* {!!errors.contractPerson_Email && <p className={styles.error1}>{errors.contractPerson_Email}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>負責業務: </div>
                             <div className={` ${styles.imputcell}`}>
@@ -239,22 +265,22 @@ const Edit = () => {
                                     <option value={5}>Hank</option>
                                 </select>
                             </div>
-                        </div>
-                        {!!errors.FAEID && <p className={styles.error1}>{errors.FAEID}</p>}
+                        </div> */}
+                        {/* {!!errors.FAEID && <p className={styles.error1}>{errors.FAEID}</p>} */}
                         <div className={`${styles.probeInfoCell} ${styles.note} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>備註: </div>
                             <div className={` ${styles.textareacell}`}>
-                                <textarea name='note' onChange={(e)=>{
+                                <textarea name='note' onChange={(e) => {
                                     setNote(e.target.value)
                                 }}></textarea>
                             </div>
                         </div>
                     </div>
                     <div className={` ${styles.confirm} ${styles.display} `}>
-                        <div className={`${styles.flex1} ${styles.display} ${styles.btnleft}`} onClick={()=>{
+                        <div className={`${styles.flex1} ${styles.display} ${styles.btnleft}`} onClick={() => {
                             router.back()
                         }}>返回</div>
-                        <div className={`${styles.flex1} ${styles.display} ${styles.btnright}`} onClick={()=>{
+                        <div className={`${styles.flex1} ${styles.display} ${styles.btnright}`} onClick={() => {
                             customerSubmit()
                         }}>送出</div>
                     </div>

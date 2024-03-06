@@ -40,7 +40,7 @@ const Employeeslist = () => {
 
     useEffect(() => {
         // fetch('http://'+local+'/api/Probe')
-        fetch(`http://${url}/api/employees`)
+        fetch(`http://${url}/api/employee`)
             .then((response) => response.json())
             .then((res) => {
                 setcustomerdata(res);

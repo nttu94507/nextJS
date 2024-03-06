@@ -19,7 +19,7 @@ export default function SideBar({ title }) {
                     {`出貨管理`}
                 </div>
             </Link>
-            <Link href='/staffs'>
+            <Link href='/employees'>
                 <div className={styles.option}>
                     {`員工管理 `}
                 </div>
