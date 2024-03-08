@@ -12,15 +12,16 @@ import { use, useEffect, useState } from 'react'
 
 const Edit = () => {
     const router = useRouter();
-    const [data, setData] = useState()
-    const [GUInumber, setGUInumber] = useState('');
-    const [Organization_Name, setOrganization_Name] = useState('');
-    const [Organization_Address, setOrganization_Address] = useState('');
-    const [contractPerson, setcontractPerson] = useState('');
-    const [contractPerson_PhoneNumber, setcontractPerson_PhoneNumber] = useState('');
-    const [contractPerson_Email, setcontractPerson_Email] = useState('');
-    const [SalesID, setSalesID] = useState('');
-    const [FAEID, setFAEID] = useState('');
+    const [id, setId] = useState('');
+    const [department, setDepartment] = useState('');
+    // const [GUInumber, setGUInumber] = useState('');
+    const [name, setName] = useState('');
+    // const [Organization_Address, setOrganization_Address] = useState('');
+    // const [contractPerson, setcontractPerson] = useState('');
+    // const [contractPerson_PhoneNumber, setcontractPerson_PhoneNumber] = useState('');
+    // const [contractPerson_Email, setcontractPerson_Email] = useState('');
+    // const [SalesID, setSalesID] = useState('');
+    // const [FAEID, setFAEID] = useState('');
     const [note, setNote] = useState('');
     const [errors, setErrors] = useState({});
     const [isFormValid, setIsFormValid] = useState(false);
@@ -29,144 +30,91 @@ const Edit = () => {
     const url = process.env.NEXT_PUBLIC_API_HOST
 
     const updatecustomer = () => {
-        const customerInfo = {
-            id: Id,
-            // GUInumber: GUInumber,
-            Organization_Name: Organization_Name,
-            Organization_Address: Organization_Address,
-            contractPerson: contractPerson,
-            contractPerson_PhoneNumber: contractPerson_PhoneNumber,
-            contractPerson_Email: contractPerson_Email,
-            SalesID: SalesID,
-            FAEID: FAEID,
+        const employeeInfo = {
+            id: id,
+            Name: name,
+            Department: department,
             note: note,
         }
-        fetch(`http://${url}/api/customers/update`, {
+        fetch(`http://${url}/api/employee/update`, {
             method: 'POST',
-            body: JSON.stringify(customerInfo),
+            body: JSON.stringify(employeeInfo),
             headers: {
                 'content-type': 'application/json'
             },
         }).then(() => {
-            // router.push('/customers/customerlist')
+            router.push('/employees/employeeslist')
             console.log('更新完成')
         }).catch((error) => {
             console.log(error)
         })
 
 
-        console.log(customerInfo)
+        // console.log(customerInfo)
 
     }
 
     useEffect(() => {
         let errors = {};
 
-        if (!GUInumber) {
-            errors.GUInumber = 'GUInumber is required.';
-        } else if (!(Number(GUInumber))) {
-            errors.GUInumber = 'GUInumber no a number.';
+        if (!id) {
+            errors.id = 'id is required.';}
+        // } else if (!(Number(id))) {
+        //     errors.id = 'id no a number.';
+        // }
+
+        if (!department) {
+            errors.department = 'department is required.';
         }
 
-        if (!Organization_Name) {
-            errors.Organization_Name = 'Organization_Name is required.';
-        }
+        // if (!Organization_Address) {
+        //     errors.Organization_Address = 'Organization_Address is required.';
+        // }
 
-        if (!Organization_Address) {
-            errors.Organization_Address = 'Organization_Address is required.';
-        }
+        // if (!contractPerson) {
+        //     errors.contractPerson = 'contractPerson is required.';
+        // }
 
-        if (!contractPerson) {
-            errors.contractPerson = 'contractPerson is required.';
-        }
+        // if (!contractPerson_PhoneNumber) {
+        //     errors.contractPerson_PhoneNumber = 'contractPerson_PhoneNumber is required.';
+        // } else if (!(Number(contractPerson_PhoneNumber))) {
+        //     errors.GUInumber = 'contractPerson_PhoneNumber no a number.';
+        // }
 
-        if (!contractPerson_PhoneNumber) {
-            errors.contractPerson_PhoneNumber = 'contractPerson_PhoneNumber is required.';
-        } else if (!(Number(contractPerson_PhoneNumber))) {
-            errors.GUInumber = 'contractPerson_PhoneNumber no a number.';
-        }
+        // if (!contractPerson_Email) {
+        //     errors.contractPerson_Email = 'contractPerson_Email is required.';
+        // }
 
-        if (!contractPerson_Email) {
-            errors.contractPerson_Email = 'contractPerson_Email is required.';
-        }
+        // if (!SalesID) {
+        //     errors.SalesID = 'SalesID is required.';
+        // }
 
-        if (!SalesID) {
-            errors.SalesID = 'SalesID is required.';
-        }
-
-        if (!FAEID) {
-            errors.FAEID = 'FAEID is required.';
-        }
+        // if (!FAEID) {
+        //     errors.FAEID = 'FAEID is required.';
+        // }
         setErrors(errors);
         setIsFormValid(Object.keys(errors).length === 0);
-    }, [GUInumber, Organization_Name, Organization_Address, contractPerson, contractPerson_PhoneNumber, contractPerson_Email, SalesID, FAEID]);
+    }, [id, name, department, note]);
 
 
     useEffect(() => {
         if (!router.isReady) return;
         console.log(Id)
 
-        fetch(`http://${url}/api/customers/detail/${Id}`)
+        fetch(`http://${url}/api/employee/${Id}`)
             .then((response) => response.json())
             .then((res) => {
                 console.log(res)
-                setData(res[0]);
-                setGUInumber(res[0].GUInumber)
-                setOrganization_Name(res[0].Organization_Name)
-                setOrganization_Address(res[0].Organization_Address)
-                setcontractPerson(res[0].contractPerson)
-                setcontractPerson_PhoneNumber(res[0].contractPerson_PhoneNumber)
-                setcontractPerson_Email(res[0].contractPerson_Email)
-                setSalesID(res[0].SalesID)
-                setFAEID(res[0].FAEID)
-                setNote(res[0].note)
+                setId(res[0].id);
+                setDepartment(res[0].department)
+                setName(res[0].name)
+                setNote(res[0].note ? res[0].note : '')
             })
 
     }, [router.isReady])
 
-    const validateForm = () => {
-        let errors = {};
 
-        if (!GUInumber) {
-            errors.GUInumber = 'GUInumber is required.';
-        } else if (!(Number(GUInumber))) {
-            errors.GUInumber = 'GUInumber no a number.';
-        }
-
-        if (!Organization_Name) {
-            errors.Organization_Name = 'Organization_Name is required.';
-        }
-
-        if (!Organization_Address) {
-            errors.Organization_Address = 'Organization_Address is required.';
-        }
-
-        if (!contractPerson) {
-            errors.contractPerson = 'contractPerson is required.';
-        }
-
-        if (!contractPerson_PhoneNumber) {
-            errors.contractPerson_PhoneNumber = 'contractPerson_PhoneNumber is required.';
-        } else if (!(Number(contractPerson_PhoneNumber))) {
-            errors.GUInumber = 'contractPerson_PhoneNumber no a number.';
-        }
-
-        if (!contractPerson_Email) {
-            errors.contractPerson_Email = 'contractPerson_Email is required.';
-        }
-
-        if (!SalesID) {
-            errors.SalesID = 'SalesID is required.';
-        }
-
-        if (!FAEID) {
-            errors.FAEID = 'FAEID is required.';
-        }
-        setErrors(errors);
-        setIsFormValid(Object.keys(errors).length === 0);
-    }
-
-    const customerSubmit = () => {
+    const employeeSubmit = () => {
         if (isFormValid) {
             console.log('Form submitted successfully!');
             updatecustomer()
@@ -179,39 +127,46 @@ const Edit = () => {
 
     return (
         <div className={`${styles.display}`}>
-            <Head><title>{'修改客戶資訊'}</title></Head>
+            <Head><title>{'修改員工資訊'}</title></Head>
             <div className={`${styles.display} ${styles.editprobe}`}>
                 {/* <div ><h1>{data.probeId ? '修改設備資訊' : '新增設備資訊'}</h1></div> */}
                 {/* {data.probeId ? '修改設備資訊' : '新增設備資訊'} */}
                 <div className={`${styles.probeInfo} ${styles.display}`}>
-                    <div className={`${styles.probetitle} ${styles.display}`}><h1>{'修改客戶資訊'}</h1></div>
+                    <div className={`${styles.probetitle} ${styles.display}`}><h1>{'修改員工資訊'}</h1></div>
                     <div className={`${styles.probecontent}`}>
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
-                            <div className={`${styles.itemcell}`}>統一編號: </div>
-                            <div className={` ${styles.imputcell} ${styles.display} ${styles.justfycenter}`}>{GUInumber}
+                            <div className={`${styles.itemcell}`}>員工編號 : </div>
+                            <div className={` ${styles.imputcell} ${styles.display} ${styles.justfycenter}`}>{id}
                                 {/* <input type='text' name='GUInumber' placeholder={GUInumber}  defaultValue={GUInumber}  /> */}
                             </div>
                         </div>
-                        {!!errors.GUInumber && <p className={styles.error1}>{errors.GUInumber}</p>}
-                        <div className={`${styles.probeInfoCell} ${styles.display}`}>
-                            <div className={`${styles.itemcell}`}>公司名稱: </div>
-                            <div className={` ${styles.imputcell}`}>
-                                <input type='text' name='Organization_Name' placeholder={'請輸入公司名稱'} value={Organization_Name ? Organization_Name : ''} onChange={(e) => {
-                                    setOrganization_Name(e.target.value)
-                                }} />
-                            </div>
-                        </div>
-                        {!!errors.Organization_Name && <p className={styles.error1}>{errors.Organization_Name}</p>}
+                        {!!errors.id && <p className={styles.error1}>{errors.id}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>公司地址: </div>
                             <div className={` ${styles.imputcell}`}>
-                                <input type='text' name='Organization_Address' placeholder={'請輸入公司地址'} value={Organization_Address ? Organization_Address : ''} onChange={(e) => {
-                                    setOrganization_Address(e.target.value)
+                                <input type='text' name='name' placeholder={'請輸入姓名'} value={name ? name : ''} onChange={(e) => {
+                                    setName(e.target.value)
                                 }} />
                             </div>
                         </div>
-                        {!!errors.Organization_Address && <p className={styles.error1}>{errors.Organization_Address}</p>}
+                        {!!errors.name && <p className={styles.error1}>{errors.name}</p>}
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
+                            <div className={`${styles.itemcell}`}>部門: </div>
+                            <div className={` ${styles.imputcell}`}>
+                                <select name='department' required value={department ? department : ""} onChange={(e) => {
+                                    setDepartment(e.target.value)
+                                }}>
+                                    <option value={""}>請選擇部門</option>
+                                    <option value={0}>管理部</option>
+                                    <option value={1}>業務部</option>
+                                    <option value={2}>開發部</option>
+                                    <option value={3}>技術服務部</option>
+                                </select>
+                            </div>
+                        </div>
+                        {!!errors.department && <p className={styles.error1}>{errors.department}</p>}
+
+                        {/* <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>承辦人: </div>
                             <div className={` ${styles.imputcell}`}>
                                 <input type='text' name='contractPerson' placeholder={'請輸入承辦人姓名'} value={contractPerson ? contractPerson : ''} onChange={(e) => {
@@ -267,7 +222,7 @@ const Edit = () => {
                                 </select>
                             </div>
                         </div>
-                        {!!errors.FAEID && <p className={styles.error1}>{errors.FAEID}</p>}
+                        {!!errors.FAEID && <p className={styles.error1}>{errors.FAEID}</p>} */}
                         <div className={`${styles.probeInfoCell} ${styles.note} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>備註: </div>
                             <div className={` ${styles.textareacell}`}>
@@ -282,7 +237,7 @@ const Edit = () => {
                             router.back()
                         }}>返回</div>
                         <div className={`${styles.flex1} ${styles.display} ${styles.btnright}`} onClick={() => {
-                            customerSubmit()
+                            employeeSubmit()
                         }}>送出</div>
                     </div>
                 </div>

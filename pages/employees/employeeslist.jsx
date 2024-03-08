@@ -58,10 +58,10 @@ const Employeeslist = () => {
                 <div className={`${styles.card} = ${styles.display}`} key={dat.id}>
                     <div className={`${styles.cardupper} ${styles.display} `}>
                         <div className={`${styles.probeid} ${styles.display}`}>
-                             {dat.Name}{/*客戶名稱 */}
+                             {dat.name}{/*客戶名稱 */}
                         </div>
                         <div className={`${styles.probestatus} ${styles.display}`}>
-                            {dat.Department}{/*保固到期日 */}
+                            {dat.department}{/*保固到期日 */}
                         </div>
                     </div>
                     <div className={`${styles.cardcontent}`}>
@@ -69,7 +69,7 @@ const Employeeslist = () => {
                         <div>聯繫方式:{dat.contractPerson_PhoneNumber}</div>
                         <div>批次:{dat.createdate}</div>
                         <div>硬碟大小:{dat.harddiskdrive}</div> */}
-                        <div>部門:{dat.Department? dat.Department:dat.Department}</div>
+                        <div>部門:{dat.department? dat.department:""}</div>
                         <div>備註:{dat.note ? dat.note : ''}</div>
                     </div>
                     <div className={`${styles.cardbuttom} ${styles.display}`}>
