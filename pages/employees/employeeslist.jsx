@@ -58,18 +58,18 @@ const Employeeslist = () => {
                 <div className={`${styles.card} = ${styles.display}`} key={dat.id}>
                     <div className={`${styles.cardupper} ${styles.display} `}>
                         <div className={`${styles.probeid} ${styles.display}`}>
-                             {dat.Organization_Name}{/*客戶名稱 */}
+                             {dat.Name}{/*客戶名稱 */}
                         </div>
                         <div className={`${styles.probestatus} ${styles.display}`}>
-                            {dat.Maintenance_Agreement_at}{/*保固到期日 */}
+                            {dat.Department}{/*保固到期日 */}
                         </div>
                     </div>
                     <div className={`${styles.cardcontent}`}>
-                        <div>承辦人員:{dat.contractPerson}</div>
+                        {/* <div>承辦人員:{dat.contractPerson}</div>
                         <div>聯繫方式:{dat.contractPerson_PhoneNumber}</div>
-                        {/* <div>批次:{dat.createdate}</div> */}
-                        {/* <div>硬碟大小:{dat.harddiskdrive}</div>
-                        <div>單價:{dat.price}</div> */}
+                        <div>批次:{dat.createdate}</div>
+                        <div>硬碟大小:{dat.harddiskdrive}</div> */}
+                        <div>部門:{dat.Department? dat.Department:dat.Department}</div>
                         <div>備註:{dat.note ? dat.note : ''}</div>
                     </div>
                     <div className={`${styles.cardbuttom} ${styles.display}`}>

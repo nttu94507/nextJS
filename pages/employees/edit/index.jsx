@@ -11,7 +11,7 @@ const url = process.env.NEXT_PUBLIC_API_HOST
 const Edit = () => {
     const router = useRouter();
     // const [data, setData] = useEffect()
-    const [employeeID, setemployeeID] = useState('');
+    const [department, setDepartment] = useState('');
     const [employee_Name, setEmployee_Name] = useState('');
     const [employee_Address, setEmployee_Address] = useState('');
     const [email, setEmail] = useState('');
@@ -28,12 +28,12 @@ const Edit = () => {
     const [errors, setErrors] = useState({});
     const [isFormValid, setIsFormValid] = useState(false);
 
-    const addcustomer = () => {
+    const addemployee = () => {
         const employeeInfo = {
             // id: Id,
             // GUInumber: GUInumber,
             employee_Name: employee_Name,
-            // Organization_Address: Organization_Address,
+            department: department,
             // contractPerson: contractPerson,
             // contractPerson_PhoneNumber: contractPerson_PhoneNumber,
             // contractPerson_Email: contractPerson_Email,
@@ -41,6 +41,7 @@ const Edit = () => {
             // FAEID: FAEID,
             // note: note,
         }
+        console.log(employeeInfo)
         fetch(`http://${url}/api/employee/`, {
             method: 'POST',
             body: JSON.stringify(employeeInfo),
@@ -50,7 +51,7 @@ const Edit = () => {
         }).then(() => {
             router.push('/employees/employeeslist')
         }).catch((error) => {
-            console.log(error)
+            // console.log(error)
         })
 
 
@@ -71,9 +72,9 @@ const Edit = () => {
             errors.employee_Name = 'Name is required.';
         }
 
-        // if (!employee_Address) {
-        //     errors.employee_Address = 'Address is required.';
-        // }
+        if (!department) {
+            errors.employee_Address = 'Address is required.';
+        }
 
         // if (!email) {
         //     errors.email = 'email is required.';
@@ -139,7 +140,7 @@ const Edit = () => {
     const customerSubmit = () => {
         if (isFormValid) {
             console.log('Form submitted successfully!');
-            addcustomer()
+            addemployee()
         } else {
             console.log('Form has errors. Please correct them.');
             // errors.submit = '請檢查新增內容' 
@@ -236,8 +237,23 @@ const Edit = () => {
                                 }}/>
                             </div>
                         </div> */}
-                        {/* {!!errors.contractPerson_Email && <p className={styles.error1}>{errors.contractPerson_Email}</p>}
+                        {/* {!!errors.contractPerson_Email && <p className={styles.error1}>{errors.contractPerson_Email}</p>} */}
                         <div className={`${styles.probeInfoCell} ${styles.display}`}>
+                            <div className={`${styles.itemcell}`}>隸屬部門: </div>
+                            <div className={` ${styles.imputcell}`}>
+                                <select name='department' required onChange={(e)=>{
+                                    setDepartment(e.target.value)
+                                }}>
+                                    <option value={""}>請選擇部門</option>
+                                    <option value={0}>管理部</option>
+                                    <option value={1}>業務部</option>
+                                    <option value={2}>開發部</option>
+                                    <option value={3}>技術服務部</option>
+                                </select>
+                            </div>
+                        </div>
+                        {!!errors.SalesID && <p className={styles.error1}>{errors.SalesID}</p>}
+                        {/* <div className={`${styles.probeInfoCell} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>負責業務: </div>
                             <div className={` ${styles.imputcell}`}>
                                 <select name='SalesID' required onChange={(e)=>{
@@ -265,8 +281,8 @@ const Edit = () => {
                                     <option value={5}>Hank</option>
                                 </select>
                             </div>
-                        </div> */}
-                        {/* {!!errors.FAEID && <p className={styles.error1}>{errors.FAEID}</p>} */}
+                        </div>
+                        {!!errors.FAEID && <p className={styles.error1}>{errors.FAEID}</p>} */}
                         <div className={`${styles.probeInfoCell} ${styles.note} ${styles.display}`}>
                             <div className={`${styles.itemcell}`}>備註: </div>
                             <div className={` ${styles.textareacell}`}>
