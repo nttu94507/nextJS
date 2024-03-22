@@ -62,33 +62,9 @@ const Edit = () => {
     useEffect(() => {
         let errors = {};
 
-        // if (!employeeID) {
-        //     errors.employeeID = 'employee ID is required.';
-        // } else if (!(Number(employeeID))) {
-        //     errors.employeeID = 'employee ID no a number.';
-        // }
-
         if (!employee_Name) {
             errors.employee_Name = 'Name is required.';
         }
-
-        if (!department) {
-            errors.employee_Address = 'Address is required.';
-        }
-
-        // if (!email) {
-        //     errors.email = 'email is required.';
-        // }
-
-        // if (!contractPerson) {
-        //     errors.contractPerson = 'contractPerson is required.';
-        // }
-
-        // if (!contractPerson_PhoneNumber) {
-        //     errors.contractPerson_PhoneNumber = 'PhoneNumber is required.';
-        // } else if (!(Number(contractPerson_PhoneNumber))) {
-        //     errors.GUInumber = 'contractPerson_PhoneNumber no a number.';
-        // }
 
         setErrors(errors);
         setIsFormValid(Object.keys(errors).length === 0);
@@ -98,41 +74,11 @@ const Edit = () => {
     const validateForm = () => {
         let errors = {};
 
-        // if (!GUInumber) {
-        //     errors.GUInumber = 'GUInumber is required.';
-        // } else if (!(Number(GUInumber))) {
-        //     errors.GUInumber = 'GUInumber no a number.';
-        // }
-
         if (!Organization_Name) {
             errors.Organization_Name = 'Organization_Name is required.';
         }
 
-        // if (!Organization_Address) {
-        //     errors.Organization_Address = 'Organization_Address is required.';
-        // }
-
-        // if (!contractPerson) {
-        //     errors.contractPerson = 'contractPerson is required.';
-        // }
-
-        // if (!contractPerson_PhoneNumber) {
-        //     errors.contractPerson_PhoneNumber = 'contractPerson_PhoneNumber is required.';
-        // } else if (!(Number(contractPerson_PhoneNumber))) {
-        //     errors.GUInumber = 'contractPerson_PhoneNumber no a number.';
-        // }
-
-        // if (!contractPerson_Email) {
-        //     errors.contractPerson_Email = 'contractPerson_Email is required.';
-        // }
-
-        // if (!SalesID) {
-        //     errors.SalesID = 'SalesID is required.';
-        // }
-
-        // if (!FAEID) {
-        //     errors.FAEID = 'FAEID is required.';
-        // }
+        
         setErrors(errors);
         setIsFormValid(Object.keys(errors).length === 0);
     }
@@ -142,9 +88,7 @@ const Edit = () => {
             console.log('Form submitted successfully!');
             addemployee()
         } else {
-            console.log('Form has errors. Please correct them.');
-            // errors.submit = '請檢查新增內容' 
-            // setErrors(errors);
+            console.log('請檢查表單');
         }
     };
 
